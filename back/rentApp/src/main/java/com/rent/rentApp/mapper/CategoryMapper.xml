@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rent.rentApp.mapper.CategoryMapper">
+    <!--    获取分类信息-->
+    <select id="findCategory" resultType="com.rent.rentApp.model.Category">
+     SELECT * from category
+    </select>
+
+    <!--    根据分类名称获取商品类型-->
+    <select id="findTypeByName" resultType="com.rent.rentApp.model.Type" parameterType="string">
+     SELECT * from type where category_name = #{categoryName}
+    </select>
+
+</mapper>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rent.rentApp.mapper.UserMapper">
+    <resultMap id="adminResultMap" type="com.rent.rentApp.model.Admin" >
+        <id column="admin_id" property="adminId"/>
+        <result column="user_name" property="userName"></result>
+        <result column="student_number" property="stuNumber"></result>
+        <result column="user_password" property="passWord"></result>
+    </resultMap>
+    <resultMap id="userResultMap" type="com.rent.rentApp.model.User" >
+        <id column="user_id" property="userId"/>
+        <result column="user_name" property="userName"></result>
+        <result column="user_age" property="userAge"></result>
+        <result column="user_sex" property="userSex"></result>
+        <result column="college" property="college"></result>
+        <result column="phone_number" property="phoneNumber"></result>
+        <result column="address" property="address"></result>
+        <result column="adminId" property="adminId"></result>
+    </resultMap>
+    <!--    用户注册-->
+    <insert id="register" parameterType="com.rent.rentApp.model.Admin">
+        INSERT INTO admin (user_name,user_password,student_number) VALUES (#{userName},#{passWord},#{stuNumber})
+    </insert>
+<!--    查询是否已经注册-->
+    <select id="findUserByStuNumber" parameterType="int" resultType="com.rent.rentApp.model.Admin" resultMap="adminResultMap" >
+        select * from admin where student_number = #{stuNumber}
+    </select>
+<!--    用户登录-->
+    <select id="login" parameterType="com.rent.rentApp.model.Admin" resultMap="adminResultMap" resultType="com.rent.rentApp.model.Admin">
+     SELECT * FROM admin WHERE student_number = #{stuNumber} AND user_password = #{passWord}
+     </select>
+    <!--    查询是否已经添加-->
+    <select id="findUserByAdminId" parameterType="int" resultType="com.rent.rentApp.model.User" resultMap="userResultMap" >
+        select * from user_info where admin_id = #{adminId}
+    </select>
+    <!--    添加用户信息-->
+    <insert id="addUserInfo"  parameterType="com.rent.rentApp.model.User" >
+        INSERT INTO user_info(user_name,user_age,user_sex,college,phone_number,address,admin_id)
+         VALUES (#{userName},#{userAge},#{userSex},#{college},#{phoneNumber},#{address},#{adminId})
+    </insert>
+<!--    更新用户信息信息-->
+<!--    <update id="userInfoUpdate" parameterType="com.rent.rentApp.model.User">-->
+<!--&#45;&#45;         update-->
+<!--    </update>-->
+</mapper>

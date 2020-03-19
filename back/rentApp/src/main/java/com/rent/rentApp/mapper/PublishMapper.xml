@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rent.rentApp.mapper.PublishMapper">
+    <!--    用户发布产品信息-->
+    <insert id="publish" parameterType="com.rent.rentApp.model.Product">
+        INSERT INTO product(product_name,product_brand,product_describe,product_type,product_price,user_id,product_image)
+         VALUES (#{productName},#{productBrand},#{productDescribe},#{productType},#{productPrice},#{userId},#{image})
+    </insert>
+    <!--    查询是否已经注册-->
+<!--    <select id="findUserNameByName" parameterType="com.rent.rentApp.model.User" resultType="com.rent.rentApp.model.User">-->
+<!--    SELECT * FROM user WHERE username = #{userName}-->
+<!--     </select>-->
+    <!--    用户登录-->
+<!--    <select id="login" parameterType="com.rent.rentApp.model.User" resultType="com.rent.rentApp.model.User">-->
+<!--     SELECT id,username,password FROM user-->
+<!--     WHERE username = #{username} AND password = #{password}-->
+<!--     </select>-->
+    <!--    获取该用户的全部信息-->
+
+</mapper>

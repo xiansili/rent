@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rent.rentApp.mapper.ProductMapper">
+    <resultMap id="productResultMap" type="com.rent.rentApp.model.Product" >
+        <id column="id" property="productId"/>
+        <result column="product_name" property="productName"></result>
+        <result column="product_brand" property="productBrand"></result>
+        <result column="product_describe" property="productDescribe"></result>
+        <result column="product_type" property="productType"></result>
+        <result column="product_price" property="productPrice"></result>
+        <result column="product_image" property="image"></result>
+        <result column="user_id" property="userId"></result>
+        <result column="create_time" property="createTime"></result>
+    </resultMap>
+
+    <!--    获取分类信息-->
+    <select id="getProductsByType"  resultMap="productResultMap" resultType="com.rent.rentApp.model.Product">
+     SELECT * from product where product_name = #{productType}
+     </select>
+    <!--    获取商品详情信息-->
+    <select id="getDetailById"  resultMap="productResultMap" resultType="com.rent.rentApp.model.Product">
+     SELECT * from product where id = #{productId}
+     </select>
+</mapper>
