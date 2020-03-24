@@ -27,10 +27,21 @@
     <div class="gird" ref="gird">
       <van-grid square>
         <van-grid-item
-          v-for="(item,index) in navList"
+          v-for="(item, index) in navList"
           :key="index"
           :icon="item.imgUrl"
           :text="item.text"
+        />
+      </van-grid>
+    </div>
+    <!-- 推荐模块 -->
+    <div class="recommend">
+      <van-grid :gutter="1" :column-num="2">
+        <van-grid-item
+          v-for="value in 8"
+          :key="value"
+          icon="photo-o"
+          text="文字"
         />
       </van-grid>
     </div>
@@ -49,7 +60,7 @@ import Clothes from "@/assets/image/indePage/clothes.png";
 export default {
   data() {
     return {
-      imgUrl:Hot,
+      imgUrl: Hot,
       search: "",
       //轮播图
       images: [
@@ -58,47 +69,47 @@ export default {
         "https://img12.360buyimg.com/mobilecms/s280x280_jfs/t1/88636/37/2294/198759/5dcd1ed0Ea2c619d9/5c58d1ee342e7bb4.jpg.webp",
         "https://img30.360buyimg.com/jdcms/s300x300_jfs/t1/94811/28/10868/162515/5e217cdfEc4e4ea0c/79eb48fd7b727bce.jpg.webp"
       ],
-      navList:[
+      navList: [
         {
-           imgUrl:Time,
-           text:'限时活动',
-           url:''
+          imgUrl: Time,
+          text: "限时活动",
+          url: ""
         },
         {
-           imgUrl:Hot,
-           text:'热门产品',
-           url:''
+          imgUrl: Hot,
+          text: "热门产品",
+          url: ""
         },
         {
-           imgUrl:Star,
-           text:'闲置好物',
-           url:''
+          imgUrl: Star,
+          text: "闲置好物",
+          url: ""
         },
         {
-           imgUrl:Computer,
-           text:'硬核电脑',
-           url:''
+          imgUrl: Computer,
+          text: "硬核电脑",
+          url: ""
         },
         {
-           imgUrl:Phone,
-           text:'移动设备',
-           url:''
+          imgUrl: Phone,
+          text: "移动设备",
+          url: ""
         },
         {
-           imgUrl:Book,
-           text:'闲置好书',
-           url:''
+          imgUrl: Book,
+          text: "闲置好书",
+          url: ""
         },
         {
-           imgUrl:Clothes,
-           text:'衣物',
-           url:''
+          imgUrl: Clothes,
+          text: "衣物",
+          url: ""
         },
         {
-           imgUrl:Like,
-           text:'优惠券',
-           url:''
-        },
+          imgUrl: Like,
+          text: "优惠券",
+          url: ""
+        }
       ]
     };
   },
@@ -117,10 +128,8 @@ export default {
 
 <style lang="scss" scoped>
 #wrapper {
-  background: #f5f6f7;
   width: 90%;
   margin: 0.5rem auto;
-  height: 6rem;
   & .header {
     position: absolute;
     background: #00adb5;
@@ -158,6 +167,12 @@ export default {
   }
   & .gird {
     margin-top: 3rem;
+    box-shadow: 0 0.1rem 0.05rem #888888;
+  }
+
+  & .recommend{
+    margin-top: 0.2rem;
+    box-shadow: 0 0.1rem 0.05rem #888888;
   }
 }
 .clearfix:after {

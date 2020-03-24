@@ -2,7 +2,7 @@
   <div id="app">
     <HeaderBar/>
     <router-view v-if="isRouterAlive" />
-    <FooterBar/>
+    <router-view name="footer-bar"/>
   </div>
 </template>
 
@@ -10,11 +10,9 @@
 import {mapActions} from 'vuex';
 import axios from "axios";
 import URL from "@/service.config.js";
-import FooterBar from "@/components/FooterBar";
 import HeaderBar from "@/components/HeaderBar";
 export default {
   components: {
-    FooterBar,
     HeaderBar
   },
   provide(){

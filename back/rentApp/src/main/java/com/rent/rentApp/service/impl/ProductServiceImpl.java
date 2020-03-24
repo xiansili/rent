@@ -30,7 +30,6 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public MsgResponse getDetail(Integer productId) {
         Product detailById = productMapper.getDetailById(productId);
-        System.out.println(detailById);
         if (detailById!=null){
             MsgResponse success = MsgResponse.success("查询成功", detailById);
             return success;

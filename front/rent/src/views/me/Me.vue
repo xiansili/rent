@@ -32,14 +32,9 @@ export default {};
 
 <style lang="scss" scoped>
 #me {
-  // background: #f8f8f8;
   background: #f7f8fa;
-  width: 100%;
-  position: absolute;
-  top: 0.5rem;
-  bottom: 0.6px;
-  left: 0px;
-
+  width: 90%;
+  margin: 0.55rem auto;
   & #msg {
     display: flex;
     flex-direction: row;
@@ -47,7 +42,6 @@ export default {};
     & .header-left {
       flex: 1;
       display: flex;
-      background: #000;
       & .img {
         margin: auto;
       }

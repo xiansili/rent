@@ -1,11 +1,14 @@
 <template>
   <div id="wrapper">
     <van-card
+      class="wrapper-list-card"
+      v-for="(item, index) in cartList"
+      :key="index"
       num="2"
-      price="2.00"
-      desc="描述信息"
-      title="商品标题"
-      thumb="https://img.yzcdn.cn/vant/ipad.jpeg"
+      :price="item.productPrice"
+      :desc="item.productDescribe"
+      :title="item.productName"
+      :thumb="item.image"
     >
       <div slot="tags">
         <van-tag plain type="danger">标签</van-tag>
@@ -28,6 +31,9 @@
 </template>
 
 <script>
+import axios from "axios";
+import URL from "@/service.config.js";
+import { mapGetters, mapState } from "vuex";
 export default {
   data() {
     return {
@@ -39,32 +45,43 @@ export default {
   },
   methods: {
     //提交订单事件处理函数
-    onSubmit() {} ,
+    onSubmit() {},
     //判断购物车是否为空
-    isCartListNull(){
-      if (this.cartList.length==0) {
-        console.log("购物车为空")
-      } else{
-        console.log("购物车不为空")
+    isCartListNull() {
+      if (this.cartList.length == 0) {
+        this.$toast.fail("购物车为空");
       }
-      
+    },
+    getCart() {
+      let url = URL.getCart + '?stuNumber=' + this.getStuNumber;
+      axios({
+        method: "get",
+        url: url
+      })
+        .then(res => {
+          res.data.data.forEach(element => {
+            this.cartList.push(element);
+            element.image = element.image.split(",")[0];
+          });
+          this.isCartListNull()
+        })
+        .catch(err => {});
     }
   },
+  computed: {
+    ...mapGetters(["getloginState", "getStuNumber"])
+  },
   created() {
-    this.isCartListNull();
+    this.getCart();
   },
-  mounted() {
-   
-  },
+  mounted() {}
 };
 </script>
 
 <style lang="scss" scoped>
 #wrapper {
-  background: #f5f6f7;
   width: 90%;
-  height: 5rem;
-  margin: 0.5rem auto;
+  margin: 0.8rem auto;
   & .submit {
     & .van-submit-bar {
       position: fixed;
